@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>** Higgins Family Tree **</title>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.16/jstree.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.16/themes/default/style.min.css" />
+
+  <style>
+
+    /* Make jsTree arrows larger and more visible */
+    .jstree-default .jstree-icon {
+      font-size: 16px;
+    }
+
+    .jstree-default .jstree-ocl {
+      background: none !important;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      width: 24px;
+      height: 24px;
+    }
+
+    .jstree-default .jstree-closed > .jstree-ocl::before {
+      content: '▶';
+      color: white;
+      text-shadow: 0 0 1px #333;
+    }
+
+    .jstree-default .jstree-open > .jstree-ocl::before {
+      content: '▼';
+      color: #333;
+    }
+
+    .jstree-default .jstree-leaf > .jstree-ocl::before {
+      content: '';
+    }
+
+    .jstree-default .jstree-leaf > .jstree-ocl::before {
+      content: '';
+    }
+
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: small;
+      background-color: white;
+    }
+    h2 { font-style: italic; display: inline-block; margin: 0.25rem 0 0.25rem; }
+    li:hover { cursor: pointer; }
+
+    #info {
+      float: right;
+      border: 2px solid;
+      line-height: 1;
+      padding: 6px;
+    }
+    #info p { margin: 0.25rem 0; }
+
+    #outer {
+      position: fixed;
+      top: 10em;
+      right: 1em;
+      width: 500px;
+      max-height: 80vh;
+      padding: 1px;
+      display: none;
+      border: solid black;
+      border-width: 1px;
+    }
+    #header {
+      background-color: #E4E4E4;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #heading {
+      font-size: 130%;
+      color: black;
+      font-weight: bold;
+      padding: 5px;
+      padding-left: 7em;
+      cursor: initial;
+    }
+    #close {
+      font-size: 140%;
+      color: black;
+      cursor: pointer;
+      padding-right: 0.5em;
+    }
+    #close:hover { cursor: pointer; }
+    #inner {
+      width: 490px;
+      max-height: calc(80vh - 40px);
+      background-color: white;
+      color: black;
+      padding: 5px;
+      white-space: pre-wrap;
+      overflow: auto;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="info">
+    <p>Any queries/information can be directed to&nbsp;</p>
+    <p>Sean Connolly</p>
+    <p>email: <a href="mailto:connolly.maree@gmail.com?Subject=Higgins Family Tree">connolly.maree@gmail.com</a></p>
+    <p>Mobile: 353 87 2219183</p>
+  </div>
+
+  <h2>Higgins Family Tree</h2>&nbsp;&nbsp;&nbsp;(Click on name for further information)
+  <br><br>
+
+  <div id="data">
+    <ul id="org" style="display:none"></ul>
+  </div>
+
+  <div id="outer">
+    <div id="header">
+      <span id="heading">Information on Individual</span>
+      <span id="close" title="close" onclick="return closeDiv()">x</span>
+    </div>
+    <div id="inner"></div>
+  </div>
+
+  <script>
+
+  /******************************************************************
+   * FAMILY TREE DATA
+   * Source: index.html (original higgins repository) for tree structure
+   *         personalInfo1.xml for bio content
+   * Schema per node:
+   * {
+   *   label:    "Visible text in tree",
+   *   bio:      "Optional bio text using #b# #!b# #u# #!u# markup",
+   *   opened:   true,
+   *   children: [ ... ]
+   * }
+   ******************************************************************/
+  const familyTreeData = {
+    label: "Bartley Higgins : married to Mary Conroy born c.1821",
+    opened: true,
+    bio: "#b#Name: \t\t\t#u#Bartley Higgins#!u##!b#\nDate of Birth:\t\tUnknown\nDate of Death:\t\tUnknown\nPlace of Birth: \t\tLettercallow, Connemara\nPlace of Death: \t\tLettercallow, Connemara\nResidence:\t\tLettercallow, Connemara (at time of death)\n\nPlace of Marriage:\tUnknown\nDate of Marriage:\tUnknown\n\n#b#Other Information#!b#\n\tNo other information available\n\n#b#Spouse: \t\t\t#u#Mary Conroy#!u##!b#\nDate of Birth:\t\tborn c. 1821\nDate of Death:\t\tUnknown\nPlace of Birth:\t\tLettercallow, Connemara\nPlace of Death:\t\tLettercallow, Connemara\nPlace of Residence:\tConnemara (at time of death)\n\n#b#Other Information#!b#\nAged 80 years on 1901 census by which time she was living with her son Sean",
+    children: [
+      {
+        label: "Sean Higgins c.1861-Feb 7, 1942 : married to Mary O'Toole born c.1864-Feb 7, 1947",
+        opened: true,
+        bio: "#b#Name: \t\t\t#u#Sean Higgins#!u##!b#\nDate of Birth:\t\tc.1857-1861 (see other information below)\nDate of Death:\t\tFeb 7, 1942\nPlace of Birth: \t\tLettercallow, Connemara\nPlace of Death: \t\tLettercallow, Connemara\nResidence:\t\tLettercallow, Connemara (at time of death)\n\nPlace of Marriage:\tUnknown\nDate of Marriage:\tUnknown\n\n#b#Other Information#!b#\nThe fact that he was listed as aged 40 on the 1901 census and 55 on the 1911 census is anomalous.\n\n#b#Spouse: \t\t\t#u#Mary O'Toole#!u##!b#\nDate of Birth:\t\tc.1864\nDate of Death:\t\tFeb 7, 1949\nPlace of Birth:\nPlace of Death:\n\n#b#Other Information#!b#\nHer father was Partick O'Toole and her mother was Catherine Cloherty. I cannot fin them on the 1901 census; perhaps they were dead at that stage\n\n#b#General Comments#!b#\nShe died exactly 7 years after he did",
+        children: [
+
+          {
+            label: "Bartley born Aug 4, 1888 : married to Mary McCabe",
+            bio: "#b#Name: \t\t\t#u#Bartley Higgins#!u##!b#\nDate of Birth:\t\tAug 4, 1888\nDate of Death:\t\tUnknown\nPlace of Birth: \t\tLettercallow, Connemara\nPlace of Death: \t\tEngland???\nResidence:\t\tEngland???\n\nPlace of Marriage:\tUnknown\nDate of Marriage:\tUnknown\n\n#b#Other Information#!b#\nHe had a daughter Mary (born 1908) when he was approximately 19 years old. She was included in her grandfather's (Sean, Bartley's father) household in the 1911 census but Bartley himself was not in that household.\nIt seem that he left his family in Lettercallow and went to England where he married again (bigamously?) and had at least one more child\n\n#b#Spouse: \t\t\t#u#Mary McCabe#!u##!b#\nDate of Birth:\t\tFeb 24, 1886\nDate of Death:\t\tUnknown\nPlace of Birth:\t\tLettercallow\nPlace of Death:\n\n#b#Other Information#!b#\nHer father was Martin and her mother was Bridget (nee Delap)",
+            children: [
+              { label: "Mary born 1908 (Scotland)" },
+              {
+                label: "Alice(Mervue) : married Gerry O'Leary",
+                children: [
+                  { label: "Joan" },
+                  { label: "Bertie" },
+                  { label: "Mary (New York)" },
+                  { label: "Bridie" },
+                  { label: "Claire lives in Mervue) : married to Johnny Bartley (surname))" },
+                  { label: "Patricia (deceased)" }
+                ]
+              },
+              { label: "Bridie : nun in Scotland" },
+              {
+                label: "Sean (Mervue)",
+                children: [
+                  { label: "Joe (Salthill)" },
+                  { label: "Rita Ann Higgins (Mervue)" },
+                  { label: "7 other children" },
+                  { label: "Carmel Frost (Florida) : 2nd marriage" },
+                  { label: "Daughter : 2nd marriage" }
+                ]
+              },
+              { label: "Willie Dubh (died in England)" },
+              { label: "Another born in England" }
+            ]
+          },
+
+          {
+            label: "Coleman June 8, 1890 in Lettercallow (lived in Palmyra Avenue, Galway) : married Anna, Pat Folan's sister : second wife was from Craughwell, Co. Galway",
+            children: [
+              { label: "John Patrick (Paddy)" },
+              { label: "Colmán (Dublin)" },
+              { label: "Bertie (Crawley, UK) : deceased" },
+              { label: "Willie Rua" },
+              {
+                label: "Nancy Wilson (Dublin)",
+                children: [
+                  { label: "Georgie Wilson : was on the Dublin team that beat Galway in the 1974 All-Ireland football final" }
+                ]
+              },
+              { label: "Gerard - England. Member of 2nd family)" },
+              { label: "Mary - England. Member of 2nd family" },
+              { label: "Michael - Wicklow. Member of 2nd family" },
+              { label: "Rita O'Connell - Menlo. Member of 2nd family" }
+            ]
+          },
+
+          {
+            label: "Sean (Jack) born c.1893 :worked as a driver for Guinness in Dublin",
+            bio: "#b#Name: \t\t\t#u#Sean (Jack) Higgins#!u##!b#\nDate of Birth:\t\tc.1893\nDate of Death:\t\tUnknown\nPlace of Birth: \t\tLettercallow, Connemara\nPlace of Death: \t\tDublin?\nResidence:\t\tDublin\n\nPlace of Marriage:\tUnknown\nDate of Marriage:\tUnknown\n\n#b#Other Information#!b#\nHe worked as a driver for Guinness. He would sometimes visit Lettercallow in his car (it is unclear if this was the car he drove for Guinness or his own personal vehicle). Mary Higgins Connolly from Oughterard remembered that he was alway on alert to ensure that the local children didn't go near the car, a fact that didn't amuse her even in her late seventies.\n\n#b#Spouse: \t\t\t#u#Unknown#!u##!b#\nDate of Birth:\t\tUnknown\nDate of Death:\t\tUnknown\nPlace of Birth:\nPlace of Death:\n\n#b#Other Information#!b#\nNo other information on spouse",
+            children: [
+              { label: "Helena" },
+              { label: "Margeurita" },
+              { label: "Violet" },
+              { label: "Sean (killed in motorcycle accident aged 20)" }
+            ]
+          },
+
+          { label: "Patrick c.1895-c.1906 : died aged 11" },
+
+          {
+            label: "Bridget Jun 24, 1897-c.1996 (Slate, Lettermore) : married deLappe",
+            children: [
+              { label: "Marie - deceased c.2010(Pittsburgh)" },
+              { label: "Catherine (Carlow)" },
+              { label: "Bridget (Pittsburgh)" },
+              { label: "Paddy (Santa Barbara, CA)" },
+              { label: "Margaret (Baby) : deceased c.2004 (Lettermore)" },
+              { label: "Sean died aged 3" }
+            ]
+          },
+
+          {
+            label: "Mary Higgins Folan Jan 22, 1901 - Jun 4, 1945 (Lettercallow/Rathcarn Co. Meath) : married Pat 'Tailliúr' Folan (February 28, 1894 - Nov 7, 1968) from Lettermore on Spetember 4, 1916 in Rosmuck",
+            bio: "#b#Name: \t\t\t#u#Mary Folan (nee Higgins)#!u##!b#\nDate of Birth:\t\tlate 1900 or early 1901\nDate of Death:\t\tJun 4, 1945\nPlace of Birth: \t\tLettercallow, Connemara\nPlace of Death: \t\tRathcairn, Athboy, Co. Meath\nResidence:\t\tRathcairn, Athboy, Co. Meath\n\nPlace of Marriage:\tGalway\nDate of Marriage:\tc.1917\n\n#b#Other Information#!b#\nShe married Pat Folan when she was 15 (4 months shy of her 16th birthday) and he was 22. Her parents did not approve so married in Rosmuc. They then moved to Lettermore where she had 11 children. \tIn December 1935 they moved to Rathcarn, Co. Meath as part of a government resettlement scheme where they had 3 more children. She died in 1945 following an illness.\n\n#b#Spouse: \t\t\t#u#Pat Folan#!u##!b#\nDate of Birth:\t\tFebruary 28, 1894\nDate of Death:\t\tNovember 7, 1968\nPlace of Birth:\t\tLettermore\nPlace of Death:\t\tLondon\n\n#b#Other Information#!b#\nHe emigrated to England some years after the death of his wife where he died in 1968.",
+            children: [
+              {
+                label: "Paudeen Dec 20, 1917?-? (London)",
+                children: [
+                  { label: "Kathleen" },
+                  { label: "Michael" },
+                  { label: "John" },
+                  { label: "Patrick" },
+                  { label: "Girl - deceased" }
+                ]
+              },
+              {
+                label: "Mary May 19, 1919-? (Boston) : married to Coleen Mulkerrins",
+                children: [
+                  { label: "Josaphine deceased(London)" },
+                  { label: "Michael deceased (Boston)" },
+                  { label: "Coleen (London)" },
+                  { label: "Kevin (London)" },
+                  { label: "Patsy (Boston)" },
+                  { label: "John (Boston)" },
+                  { label: "Teresa (Boston)" }
+                ]
+              },
+              {
+                label: "Nan Aug 18 1920 - Aug 16 2004 (Cashel, Connemara) : Married to Paddy Connolly",
+                children: [
+                  {
+                    label: "Paddy Sep 21, 1942- (Florida) : Married to Barbara",
+                    bio: "#b#Name: \t\t\t#u#Paddy Connolly#!u##!b#\nDate of Birth:\t\tSep 21, 1942\nPlace of Birth: \t\tLondon\nResidence:\t\tFlorida\n\nPlace of Marriage:\tNew York, USA\n\n#b#Other Information#!b#\nMoved to Ireland with the family in 1959 and then moved to the US in Mar 1964. Lived for over 50 years in New York before moving to Florida in 2014 where he has become friends with his second cousing Carmel Higgins Frost who also lives in Florida. He is also friendly with her brother Joe Higgins who visits there regularly.\n\nemail:\t\tpatrickconnolly569@hotmail.com\nMobile:\t\t001 914 329 2027\n\n#b#Spouse: \t\t\t#u#Barbara#!u##!b#",
+                    children: [
+                      { label: "Patrick Sep 10, 1967-Oct 19, 2005 (Los Angeles)" },
+                      {
+                        label: "Keith Mar 21, 1973- (Long Island NY)",
+                        children: [
+                          { label: "Lacey" }
+                        ]
+                      },
+                      {
+                        label: "Courtney Mar 21, 1977- (Los Angeles) : married to Jason",
+                        children: [
+                          { label: "Hunter" }
+                        ]
+                      },
+                      { label: "Reid Oct 29, 1989- (Austin Texas)" }
+                    ]
+                  },
+                  {
+                    label: "Jimmy Mar 21, 1946- (London) : married to Anne Mahony (died on Aug 15, 2007)",
+                    bio: "#b#Name: \t\t\t#u#Jimmy Connolly#!u##!b#\nDate of Birth:\t\tMar 21, 1946\nPlace of Birth: \t\tLondon\nResidence:\t\tLondon\n\nPlace of Marriage:\tLondon\n\n#b#Other Information#!b#\nMoved to Ireland with the family in 1959 and then moved back to London in Aug 1964 where he has lived since.\n\nemail:\t\tinfo@amyst.co.uk\nMobile:\t\t0044 771 190 7115\n\n#b#Spouse: \t\t\t#u#Ann Mahony#!u##!b#\nPlace of Birth:\t\tListowel, Co. Kerry\nDate of Death:\t\tAug 15, 2007\nPlace of Death:\t\tLondon",
+                    children: [
+                      {
+                        label: "Susan Oct 25, 1969- (London) : married to Nick Heather",
+                        children: [
+                          { label: "Stephen" },
+                          { label: "Amy" }
+                        ]
+                      },
+                      {
+                        label: "Karen Oct 20, 1975- (Leeds) : married to David",
+                        children: [
+                          { label: "Harry" },
+                          { label: "Stanley" }
+                        ]
+                      },
+                      { label: "Brian Jan 22, 1980- " }
+                    ]
+                  },
+                  {
+                    label: "Sean May 11, 1955- (Oranmore) : married to Mairead Hughes",
+                    bio: "#b#Name: \t\t\t#u#Sean Connolly#!u##!b#\nDate of Birth:\t\tMay 11, 1995\nPlace of Birth: \t\tLondon\nResidence:\t\tOranmore, Co. Galway\n\nDate of Marriage:\tFeb 16, 1979\nPlace of Marriage:\tGalway\n\n#b#Other Information#!b#\nMoved to Ireland with the family in 1959. Lived in Cashel, Connemara until he was 18 and then moved to Galway\n\nemail:\t\tconnolly.maree@gmail.com\nMobile:\t\t00353 87 2219183\n\n#b#Spouse: \t\t\t#u#Mairead Hughes#!u##!b#\nPlace of Birth:\t\tClaremorris, Co. Mayo",
+                    children: [
+                      {
+                        label: "Eavan Aug 12, 1979-(Wicklow : married to Andy Hayes)",
+                        children: [
+                          { label: "Ruby Jul 17, 2014-" }
+                        ]
+                      },
+                      {
+                        label: "Emmet Feb 14, 1981- (Dublin) : married to Paula Henihan",
+                        children: [
+                          { label: "Finn Jan 31, 2014-" }
+                        ]
+                      },
+                      { label: "Denise Sep 29, 1983- (Maynooth) : married to Darrell Flinn" },
+                      { label: "Lisa May 29, 1990- (Dunshaughlin, Co. Meath)" }
+                    ]
+                  },
+                  {
+                    label: "Michael Sep 20, 1959- (New Jersey) : married to Isabel",
+                    bio: "#b#Name: \t\t\t#u#Michael Connolly#!u##!b#\nDate of Birth:\t\tSep 20, 1959\nPlace of Birth: \t\tCashel, Connemara\nResidence:\t\tNew Jersey, USA\n\nDate of Marriage:\nPlace of Marriage:\tNew Jersey, USA\n\n#b#Other Information#!b#\nMoved to the US in Feb 1988\n\nemail:\t\tmichaelconnolly59@comcast.net\nMobile:\t\t001 201 317 2788\n\n#b#Spouse: \t\t\t#u#Isabel#!u##!b#\nPlace of Birth:\t\tColumbia"
+                  },
+                  {
+                    label: "Anne Sep 11, 1961- (New York)",
+                    bio: "#b#Name: \t\t\t#u#Anne Connolly#!u##!b#\nDate of Birth:\t\tSep 11, 1961\nPlace of Birth: \t\tCashel, Connemara\nResidence:\t\tNeq York, USA\n\n#b#Other Information#!b#\nSpent 18 years in London before moving to the US\n\nMobile:\t\t001 914 417 8044"
+                  }
+                ]
+              },
+              {
+                label: "Sean Oct 17, 1922-Aug 15, 2013 (Boston) : married to Monica McDonagh from Cashel, Connemara",
+                children: [
+                  { label: "Marie Oct 2, 1953-Mar 3, 2003 (Boston)" },
+                  {
+                    label: "Phil Jul 20, 1955- (San Francisco) : married to ? Hicks",
+                    children: [
+                      { label: "Molly Mar 29, 1993-" },
+                      { label: "Sean May 2, 1995-" }
+                    ]
+                  },
+                  { label: "Una Jul 29, 1956- (New Hampshire) : married to Mike Aiken" },
+                  {
+                    label: "John Feb 3, 1960- (Boston) : Married to Maryann Folan",
+                    children: [
+                      { label: "Aine Jun 24, 1998-" },
+                      { label: "Sean (or Martin??) Oct 6, 2000-" }
+                    ]
+                  },
+                  {
+                    label: "Carmel May 8, 1963- (Boston) : Married to Kevin O'Leary",
+                    children: [
+                      { label: "Adrienne Mar 10, 1991-" },
+                      { label: "Brian Feb 28, 1993-" },
+                      { label: "Claire Sep 30, 1996-" }
+                    ]
+                  }
+                ]
+              },
+              {
+                label: "Bridie Jun 14, 1924- (Carraroe) : married to Tommy McDonagh (killed in motorcycle accident in 1958)",
+                children: [
+                  { label: "Mary (Camus)" },
+                  { label: "Petey (Camus)" },
+                  { label: "Margaret/Mags (Maam)" },
+                  { label: "Annie (Carraroe)" },
+                  { label: "Brid (Carraroe)" },
+                  { label: "Tommy (Carraroe)" },
+                  { label: "Partick (Carraroe)" }
+                ]
+              },
+              {
+                label: "Nora MdDonagh Nov 13, 1925-? (Rathcarn, Co. Meath)",
+                children: [
+                  { label: "Micheal (Rathcarn)" },
+                  { label: "Maureen Flood (Navan)" },
+                  { label: "Colm (Trim)" }
+                ]
+              },
+              {
+                label: "Winnie Mar 7, 1927-? (London) : Married to Paddy Callinan",
+                children: [
+                  { label: "Gerald Oct 4, 1958- (London)" }
+                ]
+              },
+              {
+                label: "Barbara Apr 20, 1929-? (London) : married to Jimmy Glennon",
+                children: [
+                  { label: "Jimmy (London)" },
+                  { label: "John (London)" },
+                  { label: "Patsy (London)" }
+                ]
+              },
+              {
+                label: "Coleen May 28, 1930- (San Francisco) : married to Jude Grealish",
+                children: [
+                  { label: "Teresa (Boston)" },
+                  { label: "Daughter (Boston)" },
+                  { label: "Son (San Francisco)" }
+                ]
+              },
+              {
+                label: "Bartley Mar 8, 1933- (Rathcarn, Co. Meath) : married to Maureen",
+                children: [
+                  { label: "Bartley (London)" },
+                  { label: "Marian (London)" },
+                  { label: "John (Boston)" }
+                ]
+              },
+              { label: "Marcus Aug 12, 1934-? (Boston)" },
+              {
+                label: "Philomena Apr 28, 1937- (London) : married to Gerry Daly",
+                children: [
+                  { label: "Jerimiah (London)" },
+                  { label: "Son (London)" },
+                  { label: "Daughter (London)" },
+                  { label: "Daughter (London)" }
+                ]
+              },
+              {
+                label: "Monica Sep 16, 1939- (Killorglin, Co. Kerry) : married to Don Moroney",
+                children: [
+                  { label: "Lisa Ann (Trim)" },
+                  { label: "Stephen (Wicklow)" }
+                ]
+              },
+              {
+                label: "Agnes  Jul 13, 1942(London)",
+                children: [
+                  { label: "Dawn - deceased (London)" },
+                  { label: "Mark & Twin (London)" }
+                ]
+              }
+            ]
+          },
+
+          {
+            label: "Willie Jun 24, 1903-c.197?",
+            children: [
+              {
+                label: "Mary c.1935-Nov 5, 2014 (Oughterard) : married to Connolly from Oughterard",
+                bio: "#b#Name: \t\t\t#u#Mary Connolly#!u##!b#\nDate of Birth:\t\tc.1935\nDate of Death:\t\tNov 5, 2014\nPlace of Birth: \t\tLettercallow, Connemara\nPlace of Death: \t\tOughterard, Connemara\nResidence:\t\tOughterard, Connemara (at time of death)\n\nPlace of Marriage:\tUSA\nDate of Marriage:\tUnknown\n\n#b#Other Information#!b#\nShe is responsible for a lot of the information in this family tree.\nShe spent a number of years in the USA where she married, before returning to her husband's home place in Oughterard\n\n#b#Spouse: \t\t\t#u#Connolly#!u##!b#\nDate of Birth:\nDate of Death:\t\tAs far as I know, he is still alive\nPlace of Birth:\t\tOughterard, Connemara\nPlace of Death:\nPlace of Residence:\tOughterard\n\n#b#Other Information#!b#\nNo other informationon him",
+                children: [
+                  { label: "Marie (USA)" },
+                  { label: "Billy (USA)" },
+                  { label: "Joe (London)" },
+                  { label: "Tommy (Oughterard)" },
+                  { label: "Nora Ann (Moycullen)" },
+                  { label: "James (Australia)" }
+                ]
+              },
+              { label: "Liam (Wales)" },
+              { label: "Sean - deceased(England)" },
+              { label: "Cole (Northampton)" },
+              { label: "Ann (London)" },
+              { label: "Padraic (Lettercallow)" },
+              { label: "Seamus - died aged 50 (England)" },
+              { label: "Peggy (Leitrim)" }
+            ]
+          }
+
+        ]
+      }
+    ]
+  };
+
+  /******************************************************************
+   * RENDERER: builds <ul>/<li> from JSON
+   * Bio text is stored as a data-bio attribute on each <li>.
+   * jsTree preserves data attributes, so we can retrieve them
+   * reliably in the activate_node event handler.
+   ******************************************************************/
+  function buildLiFromNode(node) {
+    const li = document.createElement("li");
+
+    if (node.opened === true) {
+      li.setAttribute("data-jstree", JSON.stringify({ opened: true }));
+    }
+
+    if (node.bio) {
+      li.setAttribute("data-bio", node.bio);
+    }
+
+    li.appendChild(document.createTextNode(node.label));
+
+    if (Array.isArray(node.children) && node.children.length) {
+      const ul = document.createElement("ul");
+      node.children.forEach(child => ul.appendChild(buildLiFromNode(child)));
+      li.appendChild(ul);
+    }
+    return li;
+  }
+
+  function renderFamilyTree(rootData, targetUlId) {
+    const ul = document.getElementById(targetUlId);
+    if (!ul) return;
+    ul.innerHTML = "";
+    ul.appendChild(buildLiFromNode(rootData));
+  }
+
+  /******************************************************************
+   * BIO DISPLAY
+   ******************************************************************/
+  function showBio(bioText) {
+    let html = bioText || "No information on this individual.";
+    html = html.replace(/#b#/gi,  "<b>");
+    html = html.replace(/#!b#/gi, "</b>");
+    html = html.replace(/#u#/gi,  "<u>");
+    html = html.replace(/#!u#/gi, "</u>");
+    html = html.replace(/\n/g,    "<br>");
+    document.getElementById("inner").innerHTML = html;
+    document.getElementById("outer").style.display = "block";
+    return false;
+  }
+
+  function closeDiv() {
+    document.getElementById("outer").style.display = "none";
+    return false;
+  }
+
+  /******************************************************************
+   * INITIALISE
+   ******************************************************************/
+  document.addEventListener("DOMContentLoaded", function () {
+
+    renderFamilyTree(familyTreeData, "org");
+
+    $("#data").jstree({ "plugins": ["state"] });
+
+    // activate_node fires when a node label is clicked.
+    // data.node.id is the id jsTree assigned to the <li>,
+    // so we retrieve the original element and read data-bio from it.
+    $("#data").on("activate_node.jstree", function (e, data) {
+      const li = document.getElementById(data.node.id);
+      const bio = li ? li.getAttribute("data-bio") : null;
+      showBio(bio);
+    });
+
+  });
+
+  </script>
+</body>
+</html>
