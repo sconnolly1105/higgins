@@ -977,6 +977,23 @@ No other information on him`,
 
   });
 
+  /******************************************************************
+   * ALLOW THE RIGHT & LEFT KEYS TO ALSO SCROLL THROUGH THE CAROUSEL
+   ******************************************************************/
+
+   document.addEventListener("keydown", function (e) {
+     const gallery = document.getElementById("gallery");
+     if (gallery.style.display !== "flex") return;
+
+     if (e.key === "ArrowLeft") {
+       galleryStep(-1);
+     } else if (e.key === "ArrowRight") {
+       galleryStep(1);
+     } else if (e.key === "Escape") {
+       closeGallery();
+     }
+   });
+	  
   </script>
 </body>
 </html>
