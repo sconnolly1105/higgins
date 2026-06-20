@@ -911,7 +911,7 @@ No other information on him`,
    * the folan_family_photos folder. Caption is optional.
    ******************************************************************/
   const galleryImages = [
-    { file: "images/great_grandfather.jpg", caption: "Back Row (l-r) Pat Folan; John Stanton; Sean Higgins Front: Sean Folan; Sean Higgins" },
+	{ file: "images/great_grandfather.jpg", caption: "My grandfather and great-grandfather", tooltip: "Back Row (l-r) Pat Folan; John Stanton; Sean Higgins Front: Sean Folan; Sean Higgins" },
     { file: "images/our_mom_and_aunt_mary.jpg", caption: "Nan (left) and sister Mary" },
     { file: "images/paudeen.jpg", caption: "Paudeen, December 20, 1934" },
     { file: "images/willie_higgins_wedding_day.jpg", caption: "Willie Higgins Wedding December 20, 1934. He is on the left, Paudeen on the right" },
@@ -951,6 +951,7 @@ No other information on him`,
     galleryShow();
   }
 
+ /* function removed
   function galleryShow() {
     const item = galleryImages[galleryIndex];
     document.getElementById("gallery-img").src = galleryFolder + item.file;
@@ -959,6 +960,18 @@ No other information on him`,
     document.getElementById("gallery-counter").textContent =
       (galleryIndex + 1) + " of " + galleryImages.length;
   }
+  */
+	  
+function galleryShow() {
+  const item = galleryImages[galleryIndex];
+  const img = document.getElementById("gallery-img");
+  img.src = galleryFolder + item.file;
+  img.alt = item.caption;
+  img.title = item.tooltip || "";
+  document.getElementById("gallery-caption").textContent = item.caption;
+  document.getElementById("gallery-counter").textContent =
+    (galleryIndex + 1) + " of " + galleryImages.length;
+}
 
   /******************************************************************
    * INITIALISE
