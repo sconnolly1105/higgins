@@ -190,6 +190,35 @@
       margin-top: 10px;
       font-size: 0.85em;
     }
+
+    /* Hide manual controls while a slideshow is running */
+    #gallery.slideshow-mode #gallery-prev,
+    #gallery.slideshow-mode #gallery-next,
+    #gallery.slideshow-mode #gallery-close {
+      display: none;
+    }
+
+    /* On-screen tooltip text shown only during slideshow (native hover tooltip cannot fire automatically) */
+    #slideshow-tooltip {
+      display: none;
+      position: absolute;
+      max-width: 60vw;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 8px 14px;
+      font-size: 0.9em;
+      border-radius: 4px;
+      white-space: pre-wrap;
+      text-align: center;
+      z-index: 10000;
+    }
+    #slideshow-tooltip.pos-top-left      { top: 20px;    left: 20px; }
+    #slideshow-tooltip.pos-top-right     { top: 20px;    right: 20px; }
+    #slideshow-tooltip.pos-bottom-left   { bottom: 20px; left: 20px; }
+    #slideshow-tooltip.pos-bottom-right  { bottom: 20px; right: 20px; }
+    #slideshow-tooltip.pos-top-middle    { top: 20px;    left: 50%; transform: translateX(-50%); }
+    #slideshow-tooltip.pos-bottom-middle { bottom: 20px; left: 50%; transform: translateX(-50%); }
+    #slideshow-tooltip.pos-centre        { top: 50%;     left: 50%; transform: translate(-50%, -50%); }
   </style>
 </head>
 <body>
@@ -237,6 +266,7 @@
       <span id="gallery-next" onclick="galleryStep(1)">&#10095;</span>
     </div>
     <div id="gallery-counter"></div>
+    <div id="slideshow-tooltip"></div>
   </div>
 
   <script>
@@ -883,13 +913,19 @@ Front: Sean Folan (Boston) age 12; Sean Higgins, father of poet Rita Ann Higgins
     }
   ];
 
-  const slideshowInterval = 4000;
-  const showSlideshowCaptions = true;
-  const showSlideshowTooltip = true;
+  /******************************************************************
+   * SLIDESHOW SETTINGS
+   ******************************************************************/
+  const slideshowInterval = 4000;          // milliseconds between slides
+  const showSlideshowCaptions = true;      // show captions during slideshow
+  const showSlideshowTooltip = true;       // show tooltip text during slideshow
+  const slideshowTooltipPosition = "bottom-middle";
+  // valid values: top-left | top-right | bottom-left | bottom-right | top-middle | bottom-middle | centre
 
   const galleryFolder = "";
   let galleryIndex = 0;
   let slideshowTimer = null;
+  let slideshowMode = false;   // true only while an auto-advancing slideshow is running
 
   function buildLiFromNode(node) {
     const li = document.createElement("li");
@@ -956,8 +992,14 @@ Front: Sean Folan (Boston) age 12; Sean Higgins, father of poet Rita Ann Higgins
     document.getElementById("lightbox").style.display = "none";
   }
 
+  /******************************************************************
+   * GALLERY — MANUAL BROWSING (arrows + close button active)
+   ******************************************************************/
   function openGallery() {
     if (galleryImages.length === 0) return;
+    slideshowMode = false;
+    document.getElementById("gallery").classList.remove("slideshow-mode");
+    document.getElementById("slideshow-tooltip").style.display = "none";
     galleryIndex = 0;
     galleryShow();
     document.getElementById("gallery").style.display = "flex";
@@ -976,29 +1018,49 @@ Front: Sean Folan (Boston) age 12; Sean Higgins, father of poet Rita Ann Higgins
     const item = galleryImages[galleryIndex];
     const img = document.getElementById("gallery-img");
     const captionEl = document.getElementById("gallery-caption");
+    const tooltipEl = document.getElementById("slideshow-tooltip");
 
     img.src = galleryFolder + item.file;
+    img.alt = item.caption || "";
+    captionEl.textContent = item.caption || "";
 
-    if (slideshowTimer && !showSlideshowCaptions) {
-      img.alt = "";
-      captionEl.textContent = "";
-    } else {
-      img.alt = item.caption;
-      captionEl.textContent = item.caption;
-    }
-
-    if (slideshowTimer && !showSlideshowTooltip) {
+    if (slideshowMode) {
+      // Native title tooltip never fires without a real mouse hover, so it is not used here.
       img.title = "";
+      if (showSlideshowTooltip && item.tooltip) {
+        tooltipEl.textContent = item.tooltip;
+        tooltipEl.className = "pos-" + slideshowTooltipPosition;
+        tooltipEl.style.display = "block";
+      } else {
+        tooltipEl.style.display = "none";
+      }
+      if (!showSlideshowCaptions) {
+        captionEl.textContent = "";
+      }
     } else {
+      // Manual browsing: native hover tooltip works normally.
       img.title = item.tooltip || "";
+      tooltipEl.style.display = "none";
     }
 
     document.getElementById("gallery-counter").textContent =
       (galleryIndex + 1) + " of " + galleryImages.length;
   }
 
+  /******************************************************************
+   * SLIDESHOW — AUTO-ADVANCING, FULL SCREEN, NO MANUAL CONTROLS
+   ******************************************************************/
   function startSlideshow() {
     if (galleryImages.length === 0) return;
+
+    // Always clear any pre-existing timer first to avoid multiple overlapping timers
+    if (slideshowTimer) {
+      clearInterval(slideshowTimer);
+      slideshowTimer = null;
+    }
+
+    slideshowMode = true;
+    document.getElementById("gallery").classList.add("slideshow-mode");
     galleryIndex = 0;
     galleryShow();
     document.getElementById("gallery").style.display = "flex";
@@ -1009,10 +1071,19 @@ Front: Sean Folan (Boston) age 12; Sean Higgins, father of poet Rita Ann Higgins
   function stopSlideshow() {
     clearInterval(slideshowTimer);
     slideshowTimer = null;
+    slideshowMode = false;
+    document.getElementById("gallery").classList.remove("slideshow-mode");
+    document.getElementById("slideshow-tooltip").style.display = "none";
     if (document.fullscreenElement) document.exitFullscreen();
     closeGallery();
   }
 
+  /******************************************************************
+   * KEYBOARD CONTROLS
+   * Cmd+S (Mac) or Ctrl+S (Windows/Linux) → start slideshow
+   * Left/Right arrows  → step through gallery manually (manual mode only)
+   * Escape             → stop slideshow if running, else close gallery
+   ******************************************************************/
   document.addEventListener("keydown", function (e) {
     const gallery = document.getElementById("gallery");
 
@@ -1024,12 +1095,12 @@ Front: Sean Folan (Boston) age 12; Sean Higgins, father of poet Rita Ann Higgins
 
     if (gallery.style.display !== "flex") return;
 
-    if (e.key === "ArrowLeft") {
+    if (e.key === "ArrowLeft" && !slideshowMode) {
       galleryStep(-1);
-    } else if (e.key === "ArrowRight") {
+    } else if (e.key === "ArrowRight" && !slideshowMode) {
       galleryStep(1);
     } else if (e.key === "Escape") {
-      if (slideshowTimer) {
+      if (slideshowMode) {
         stopSlideshow();
       } else {
         closeGallery();
