@@ -1120,7 +1120,7 @@ Front: Sean Folan (Boston) age 12; Sean Higgins, father of poet Rita Ann Higgins
     $("#data").on("activate_node.jstree", function (e, data) {
       const li = document.getElementById(data.node.id);
       const bio = li ? li.getAttribute("data-bio") : null;
-	  closeDiv();
+	  closeDiv();		// always close any open bio before opening a new one
 	  if (bio) showBio(bio);
     });
 
