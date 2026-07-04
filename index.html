@@ -932,18 +932,13 @@ Front: Sean Folan (Boston) age 12; Sean Higgins, father of poet Rita Ann Higgins
 
 function buildLiFromNode(node) {
   const li = document.createElement("li");
-
-  const jstreeData = {};
-  if (node.opened === true) jstreeData.opened = true;
-  if (node.bio) jstreeData.text = node.label + ' <a href="#" style="font-size:0.85em" onclick="event.stopPropagation();showBio(this.closest(\'li\').getAttribute(\'data-bio\'));return false;">(Bio)</a>';
-  li.setAttribute("data-jstree", JSON.stringify(jstreeData));
-
+  if (node.opened === true) {
+    li.setAttribute("data-jstree", JSON.stringify({ opened: true }));
+  }
   if (node.bio) {
     li.setAttribute("data-bio", node.bio);
   }
-
   li.appendChild(document.createTextNode(node.label));
-
   if (Array.isArray(node.children) && node.children.length) {
     const ul = document.createElement("ul");
     node.children.forEach(child => ul.appendChild(buildLiFromNode(child)));
@@ -1116,29 +1111,49 @@ function buildLiFromNode(node) {
     }
   });
 
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
 
-    renderFamilyTree(familyTreeData, "org");
+  renderFamilyTree(familyTreeData, "org");
 
-    $("#data").jstree({ "plugins": ["state"] });
+  $("#data").jstree({ "plugins": ["state"] });
 
-    $("#data").on("activate_node.jstree", function (e, data) {
-      const li = document.getElementById(data.node.id);
-      const bio = li ? li.getAttribute("data-bio") : null;
-	  closeDiv();		// always close any open bio before opening a new one
-	  if (bio) showBio(bio);
+  // After jsTree has finished rendering, add (Bio) links to nodes that have bio data
+  $("#data").on("ready.jstree after_open.jstree", function () {
+    $("#data li[data-bio]").each(function () {
+      const li = this;
+      const anchor = $(li).children("a.jstree-anchor").first();
+      if (anchor.length && anchor.find(".bio-link").length === 0) {
+        const bioLink = document.createElement("a");
+        bioLink.textContent = " (Bio)";
+        bioLink.href = "#";
+        bioLink.className = "bio-link";
+        bioLink.style.fontSize = "0.85em";
+        bioLink.onclick = function (e) {
+          e.stopPropagation();
+          showBio(li.getAttribute("data-bio"));
+          return false;
+        };
+        anchor[0].appendChild(bioLink);
+      }
     });
-
-	$("#data").on("open_node.jstree", function (e, data) {
-	  closeDiv();
-	});
-	
-	$("#data").on("close_node.jstree", function (e, data) {
-	  closeDiv();
-	});
-	  
   });
 
+  $("#data").on("activate_node.jstree", function (e, data) {
+    const li = document.getElementById(data.node.id);
+    const bio = li ? li.getAttribute("data-bio") : null;
+    closeDiv();
+    if (bio) showBio(bio);
+  });
+
+  $("#data").on("open_node.jstree", function (e, data) {
+    closeDiv();
+  });
+
+  $("#data").on("close_node.jstree", function (e, data) {
+    closeDiv();
+  });
+
+});
   </script>
 </body>
 </html>
