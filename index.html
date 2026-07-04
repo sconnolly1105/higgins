@@ -1124,7 +1124,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const anchor = $(li).children("a.jstree-anchor").first();
       if (anchor.length && anchor.find(".bio-link").length === 0) {
         const bioLink = document.createElement("a");
-        bioLink.textContent = " (Bio)";
+        bioLink.textContent = " <i>(Bio)</i>";
         bioLink.href = "#";
         bioLink.className = "bio-link";
         bioLink.style.fontSize = "0.85em";
