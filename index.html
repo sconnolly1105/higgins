@@ -937,25 +937,12 @@ function buildLiFromNode(node) {
   }
   if (node.bio) {
     li.setAttribute("data-bio", node.bio);
+    li.setAttribute("data-jstree", JSON.stringify({
+      opened: node.opened === true,
+      text: node.label + ' <a style="font-size:0.85em">(Bio)</a>'
+    }));
   }
-
-  const span = document.createElement("span");
-  span.textContent = node.label;
-  li.appendChild(span);
-
-  if (node.bio) {
-    const bioLink = document.createElement("a");
-    bioLink.textContent = " (Bio)";
-    bioLink.href = "#";
-    bioLink.style.fontSize = "0.85em";
-    bioLink.onclick = function (e) {
-      e.stopPropagation();
-      showBio(node.bio);
-      return false;
-    };
-    li.appendChild(bioLink);
-  }
-
+  li.appendChild(document.createTextNode(node.label));
   if (Array.isArray(node.children) && node.children.length) {
     const ul = document.createElement("ul");
     node.children.forEach(child => ul.appendChild(buildLiFromNode(child)));
@@ -963,6 +950,7 @@ function buildLiFromNode(node) {
   }
   return li;
 }
+	  
   function renderFamilyTree(rootData, targetUlId) {
     const ul = document.getElementById(targetUlId);
     if (!ul) return;
