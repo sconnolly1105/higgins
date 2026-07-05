@@ -68,7 +68,7 @@
       max-height: calc(100vh - 80px - 20px - 40px);
       background-color: white;
       color: black;
-      padding: 5px;
+      padding: 8px;
       white-space: pre-wrap;
       overflow-y: auto;
       box-sizing: border-box;
@@ -274,6 +274,11 @@
       color: black;
     }
 
+      .jstree-default .jstree-anchor {
+      line-height: 1.5 !important;
+      height: auto;
+    }
+
   </style>
 </head>
 <body>
@@ -332,13 +337,13 @@
   <script>
 
   const familyTreeData = {
-    label: "Bartley Higgins : married to Mary Conroy born c.1821",
+    label: "Bartley Higgins : married to Mary Conroy born c. 1821",
     opened: true,
     bio: `#b#Name: 			#u#Bartley Higgins#!u##!b#
 His death registration
 <img src="images/BartleyHigginsDeathCert.png" alt="Bartley's death registration" class="bio-thumbnail" onclick="openLightbox(this.src, this.alt)">
 
-Date of Birth:		c.1802
+Date of Birth:		c. 1802
 Date of Death:		May 16, 1882
 Place of Birth:		Lettercallow, Connemara
 Place of Death:	Lettercallow, Connemara
@@ -355,20 +360,20 @@ Date of Birth:		born c. 1821
 Date of Death:		Nov. 26, 1911?
 Place of Birth:		Lettercallow, Connemara
 Place of Death:		Lettercallow, Connemara
-Place of Residence:	Connemara (at time of death)
+Residence:      	Connemara (at time of death)
 
 #b#Other Information#!b#
 Aged 80 years on 1901 census by which time she was living with her son Sean
 A Mary Higgins from Lettercallow died on November 26, 1911 aged 80. Possibly the same person but the age differs from census age by 10 years`,
     children: [
       {
-        label: "Sean Higgins c.1861-Feb 7, 1942 : married to Mary O'Toole born c.1864-Feb 7, 1947",
+        label: "Sean Higgins c. 1861-Feb 7, 1942",
         opened: true,
         bio: `#b#Name: 			#u#Sean Higgins#!u##!b#
 
 He is on the extreme right in this photo with the broad hat
 <img src="images/great_grandfather.jpg" alt="Sean Higgins" class="bio-thumbnail" onclick="openLightbox(this.src, this.alt)">
-<b>Date of Birth</b>:		c.1857-1861 (see other information below)
+<b>Date of Birth</b>:		c. 1857-1861 (see other information below)
 Date of Death:		Feb 7, 1942
 Place of Birth:		Lettercallow, Connemara
 Place of Death:	Lettercallow, Connemara
@@ -382,13 +387,13 @@ No records survive for births prior to 1864. In these cases, date of birth must 
 The fact that he was listed as aged 40 on the 1901 census and 55 on the 1911 census is anomalous.
 
 #b#Spouse: 			#u#Mary O'Toole#!u##!b#
-Date of Birth:		c.1864
+Date of Birth:		c. 1864
 Date of Death:		Feb 7, 1949
 Place of Birth:
 Place of Death:
 
 #b#Other Information#!b#
-Her father was Partick O'Toole and her mother was Catherine Cloherty. I cannot fin them on the 1901 census; perhaps they were dead at that stage
+Her father was Partick O'Toole and her mother was Catherine Cloherty. I cannot find them on the 1901 census; perhaps they were dead at that stage
 
 #b#General Comments#!b#
 She died exactly 7 years after he did`,
