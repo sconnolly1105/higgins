@@ -219,6 +219,36 @@
     #slideshow-tooltip.pos-top-middle    { top: 20px;    left: 50%; transform: translateX(-50%); }
     #slideshow-tooltip.pos-bottom-middle { bottom: 20px; left: 50%; transform: translateX(-50%); }
     #slideshow-tooltip.pos-centre        { top: 50%;     left: 50%; transform: translate(-50%, -50%); }
+
+    #inner {
+      width: 490px;
+      max-height: calc(100vh - 80px - 20px - 40px);
+      background-color: white;
+      color: black;
+      padding: 5px;
+      overflow-y: auto;
+      box-sizing: border-box;
+      /* Remove white-space: pre-wrap — we handle line breaks manually now */
+    }
+
+    #inner .bio-grid {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      column-gap: 12px;
+      row-gap: 3px;
+      align-items: baseline;
+    }
+
+    #inner .bio-label {
+      font-weight: normal;
+      white-space: nowrap;
+    }
+
+    #inner .bio-full {
+      grid-column: 1 / -1;
+      margin-top: 6px;
+    }
+
   </style>
 </head>
 <body>
@@ -961,8 +991,32 @@ function buildLiFromNode(node) {
     html = html.replace(/#!b#/gi, "</b>");
     html = html.replace(/#u#/gi,  "<u>");
     html = html.replace(/#!u#/gi, "</u>");
-    html = html.replace(/\n/g,    "<br>");
-    document.getElementById("inner").innerHTML = html;
+
+    // Split into lines and build a grid for label:value lines,
+    // leaving free-text lines as full-width paragraphs
+    const lines = html.split(/\n/);
+    let result = '<div class="bio-grid">';
+
+    lines.forEach(line => {
+      const trimmed = line.trim();
+      if (trimmed === "") {
+        // Empty line — close and reopen grid to create visual gap
+        result += '</div><div style="height:6px"></div><div class="bio-grid">';
+      } else if (trimmed.includes("\t")) {
+        // Tab-separated line — treat as label + value pair
+        const parts = trimmed.split(/\t+/);
+        const label = parts[0];
+        const value = parts.slice(1).join(" ").trim();
+        result += `<span class="bio-label">${label}</span><span>${value}</span>`;
+      } else {
+        // Free text line (headings, paragraphs, image tags)
+        result += `<span class="bio-full">${trimmed}</span>`;
+      }
+    });
+
+    result += '</div>';
+
+    document.getElementById("inner").innerHTML = result;
 
     const outer = document.getElementById("outer");
     const header = document.getElementById("header");
