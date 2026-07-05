@@ -249,11 +249,37 @@
       margin-top: 6px;
     }
 
+    /* Info box — hidden by default, centred when shown */
+    #info {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 2px solid;
+      line-height: 1.6;
+      padding: 16px 20px;
+      background-color: white;
+      box-sizing: border-box;
+      z-index: 9997;
+      min-width: 280px;
+    }
+
+    #info-close {
+      position: absolute;
+      top: 4px;
+      right: 8px;
+      font-size: 1.4em;
+      cursor: pointer;
+      color: black;
+    }
+
   </style>
 </head>
 <body>
 
   <div id="info">
+    <span id="info-close" onclick="document.getElementById('info').style.display='none'">x</span>
     <p>Any queries/information can be directed to&nbsp;</p>
     <p>Sean Connolly</p>
     <p>email: <a href="mailto:connolly.maree@gmail.com?Subject=Higgins Family Tree">connolly.maree@gmail.com</a></p>
@@ -261,11 +287,13 @@
     <p>Note: Click on any thumbnail image in this site will enlarge it</p>
     <br>
     <p>Click <a href="#" onclick="openGallery(); return false;">here</a> for more family photos</p>
-	<p>or click Ctrl + S (Command + S on Mac)</p>
-	<p>to access a slideshow of same photos</p>
+    <p>or click Ctrl + S (Command + S on Mac)</p>
+    <p>to access a slideshow of same photos</p>
   </div>
 
-  <h2>Higgins Family Tree</h2>&nbsp;&nbsp;&nbsp;(Click on name for further information)
+  <h2>Higgins Family Tree</h2>&nbsp;&nbsp;&nbsp;
+  <span style="font-size:1.1em;">ℹ️</span>
+  <a href="#" onclick="document.getElementById('info').style.display='block'; return false;">Click here for further information</a> 
   <br><br>
 
   <div id="data">
