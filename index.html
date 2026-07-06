@@ -1220,9 +1220,12 @@ document.addEventListener("DOMContentLoaded", function () {
         bioLink.href = "#";
         bioLink.className = "bio-link";
         bioLink.style.fontSize = "0.85em";
-		bioLink.style.fontStyle = "italic";
+		    bioLink.style.fontStyle = "italic";
         bioLink.onclick = function (e) {
           e.stopPropagation();
+          const nodeId = li.id;
+          $("#data").jstree("deselect_all");
+          $("#data").jstree("select_node", nodeId);
           showBio(li.getAttribute("data-bio"));
           return false;
         };
