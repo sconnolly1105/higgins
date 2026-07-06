@@ -337,7 +337,7 @@
   </div>
 
   <script>
-    
+
   const galleryImages = [
     {
       file: "images/great_grandfather.jpg",
@@ -647,7 +647,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		    bioLink.style.fontStyle = "italic";
         bioLink.onclick = function (e) {
           e.stopPropagation();
-         // const nodeId = li.id;
+          const nodeId = li.id;
           $("#data").jstree("deselect_all");
           $("#data").jstree("select_node", nodeId);
          // showBio(li.getAttribute("data-bio"));
