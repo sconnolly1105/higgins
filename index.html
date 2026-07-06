@@ -647,10 +647,12 @@ document.addEventListener("DOMContentLoaded", function () {
 		    bioLink.style.fontStyle = "italic";
         bioLink.onclick = function (e) {
           e.stopPropagation();
-          const nodeId = li.id;
+          // Visually select this node in the tree
           $("#data").jstree("deselect_all");
-          $("#data").jstree("select_node", nodeId);
-         // showBio(li.getAttribute("data-bio"));
+          $("#data").jstree("select_node", li.id, true); // true = suppress activate_node event
+          // Show the bio directly
+          closeDiv();
+          showBio(li.getAttribute("data-bio"));
           return false;
         };
         anchor[0].appendChild(bioLink);
