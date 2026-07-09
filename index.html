@@ -667,7 +667,7 @@ document.addEventListener("DOMContentLoaded", function () {
     closeDiv();
     console.log (`bio: ${bio}`);
     console.log (`bioActive: ${bioActive}`);
-    if (bio && bioActive === "active") showBio(bio);
+    if (bio && bioActive === "active") showBio(bio);    // only show bio if it exists and is active
   });
 
   $("#data").on("open_node.jstree", function (e, data) {
