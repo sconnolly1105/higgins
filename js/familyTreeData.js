@@ -923,7 +923,7 @@ Died aged 3` }
         },
 
         {
-          label: "Mary Higgins Folan Jan 22, 1901 - Jun 4, 1945 (Lettercallow/Rathcarn Co. Meath) : married Pat 'Tailliúr' Folan (February 28, 1894 - Nov 7, 1968) from Lettermore on Spetember 4, 1916 in Rosmuc",
+          label: "Mary Higgins Folan Jan 22, 1901 - Jun 4, 1945",
           bioActive: "active",
           bio: `Name:				#b##u#Mary Folan (nee Higgins)#!u##!b#
 
@@ -1134,7 +1134,8 @@ Place of Death:
 Place of Residence:
 
 #b#Other Information#!b#` },
-                { label: "Coleen (London)", bioActive: "inactive", bio: `Name:				#b##u#Coleen Mulkerrins#!u##!b#
+                { label: "Coleen (London)", bioActive: "active", bio: `
+Name:				#b##u#Coleen Mulkerrins#!u##!b#
 Date of Birth:
 Date of Death:
 Place of Birth:
