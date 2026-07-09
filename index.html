@@ -665,7 +665,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const li = document.getElementById(data.node.id);
     const bio = li ? li.getAttribute("data-bio") : null;
     closeDiv();
-    if (bio) showBio(bio);
+    if (bio && bioActive === "active") showBio(bio);
   });
 
   $("#data").on("open_node.jstree", function (e, data) {
