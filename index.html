@@ -664,6 +664,7 @@ document.addEventListener("DOMContentLoaded", function () {
   $("#data").on("activate_node.jstree", function (e, data) {
     const li = document.getElementById(data.node.id);
     const bio = li ? li.getAttribute("data-bio") : null;
+    const bioActive = li ? li.getAttribute("data-bioactive") : null;
     closeDiv();
     console.log (`bio: ${bio}`);
     console.log (`bioActive: ${bioActive}`);
