@@ -1134,7 +1134,7 @@ Place of Death:
 Place of Residence:
 
 #b#Other Information#!b#` },
-                { label: "Coleen (London)", bioActive: "active", bio: `
+                { label: "Coleen (London)", bioActive: "inactive", bio: `
 Name:				#b##u#Coleen Mulkerrins#!u##!b#
 Date of Birth:
 Date of Death:
