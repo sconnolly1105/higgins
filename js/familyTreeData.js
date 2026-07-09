@@ -423,7 +423,7 @@ Born in England. No further information available.` }
         },
 
         {
-          label: "Coleman June 8, 1890 in Lettercallow (lived in Palmyra Avenue, Galway) : married Anna, Pat Folan's sister : second wife was from Craughwell, Co. Galway",
+          label: "Coleman June 8, 1890- in Lettercallow (lived in Palmyra Avenue, Galway) : married Anna, Pat Folan's sister : second wife was from Craughwell, Co. Galway",
           bioActive: "active",
           bio: `Name:				#b##u#Coleman Higgins#!u##!b#
 Date of Birth:		June 8, 1890
@@ -446,7 +446,7 @@ Place of Death:
 Place of Residence:
 
 #b#Other Information#!b#
-Sister of Pat Folan
+She was a sister of Pat Folan. So a brother and sister (Pat & Anna Folan) married a sister and brother (Mary & Coleman Higgins)
 
 #b#Spouse 2:			#u#Unknown#!u##!b#
 Date of Birth:
