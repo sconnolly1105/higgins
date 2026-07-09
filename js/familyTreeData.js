@@ -934,7 +934,7 @@ Date of Birth:		Jan 22, 1901
 Date of Death:		Jun 4, 1945
 Place of Birth:		Lettercallow, Connemara
 Place of Death:		Rathcairn, Athboy, Co. Meath
-Residence:			Rathcairn, Athboy, Co. Meath
+Residence:			  Rathcairn, Athboy, Co. Meath
 
 Place of Marriage:	Rosmuc, Co. Galway
 Date of Marriage:	Sep 4, 1916
