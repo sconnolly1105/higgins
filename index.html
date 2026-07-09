@@ -430,6 +430,9 @@ function buildLiFromNode(node) {
   if (node.bio) {
     li.setAttribute("data-bio", node.bio);
   }
+  if (node.bioActive) {
+    li.setAttribute("data-bioactive", node.bioActive);
+  }
   li.appendChild(document.createTextNode(node.label));
   if (Array.isArray(node.children) && node.children.length) {
     const ul = document.createElement("ul");
@@ -638,7 +641,7 @@ document.addEventListener("DOMContentLoaded", function () {
     $("#data li[data-bio]").each(function () {
       const li = this;
       const anchor = $(li).children("a.jstree-anchor").first();
-      if (anchor.length && anchor.find(".bio-link").length === 0) {
+      if (anchor.length && anchor.find(".bio-link").length === 0 && li.getAttribute("data-bioactive") === "active") {
         const bioLink = document.createElement("a");
         bioLink.textContent = " (Bio)";       // Add a Bio link at the end of each node details
         bioLink.href = "#";
