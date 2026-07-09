@@ -532,14 +532,13 @@ function buildLiFromNode(node) {
   }
 
   function closeGallery() {
-    document.getElementById("gallery").style.display = "none";
+//    document.getElementById("gallery").style.display = "none";
   }
 
   function galleryStep(direction) {
     galleryIndex = (galleryIndex + direction + galleryImages.length) % galleryImages.length;
     galleryShow();
   }
-
   function galleryShow() {
     const item = galleryImages[galleryIndex];
     const img = document.getElementById("gallery-img");
@@ -550,29 +549,24 @@ function buildLiFromNode(node) {
     img.alt = item.caption || "";
     captionEl.textContent = item.caption || "";
 
-    if (slideshowMode) {
-      // Native title tooltip never fires without a real mouse hover, so it is not used here.
-      img.title = "";
-      if (showSlideshowTooltip && item.tooltip) {
-        tooltipEl.textContent = item.tooltip;
-        tooltipEl.className = "pos-" + slideshowTooltipPosition;
-        tooltipEl.style.display = "block";
-      } else {
-        tooltipEl.style.display = "none";
-      }
-      if (!showSlideshowCaptions) {
-        captionEl.textContent = "";
-      }
+    // Tooltip shown as on-screen text in BOTH manual and slideshow modes
+    if (showSlideshowTooltip && item.tooltip) {
+      tooltipEl.textContent = item.tooltip;
+      tooltipEl.className = "pos-" + slideshowTooltipPosition;
+      tooltipEl.style.display = "block";
     } else {
-      // Manual browsing: native hover tooltip works normally.
-      img.title = item.tooltip || "";
       tooltipEl.style.display = "none";
+    }
+
+    // Caption suppression only applies during slideshow
+    if (slideshowMode && !showSlideshowCaptions) {
+      captionEl.textContent = "";
+      img.alt = "";
     }
 
     document.getElementById("gallery-counter").textContent =
       (galleryIndex + 1) + " of " + galleryImages.length;
   }
-
   /******************************************************************
    * SLIDESHOW — AUTO-ADVANCING, FULL SCREEN, NO MANUAL CONTROLS
    ******************************************************************/
