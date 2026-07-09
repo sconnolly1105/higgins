@@ -778,16 +778,12 @@ Date of Birth:		Mar 19, 1895
 Date of Death:		Oct 20, 1903
 Place of Birth:		Lettercallow, Connemara
 Place of Death:		Lettercallow, Connemara
-Residence:        lettercallow
-
-Place of Marriage:	N/A
-Date of Marriage:	N/A
+Residence:        Lettercallow
 
 #b#Other Information#!b#
 Died aged 8. His death registration lists the cause of death as 'probably phthisis' (a type of tuberculosis).
 <img src="images/patrick_higgins_death.png" alt="Patrick Higgins death registration" class="bio-thumbnail" onclick="openLightbox(this.src, this.alt)">
-
-#b#Spouse:			#u#N/A#!u##!b#`
+`
         },
 
         {
@@ -963,13 +959,13 @@ He emigrated to London some years after the death of his wife (by that time most
 This image was taken on December 19, 1934 at the wedding of his uncle Willie Higgins. Coincidentally, it was also the day before his 17th birthday.
 <img src="images/paudeen.jpg" alt="Paudeen Folan" class="bio-thumbnail" onclick="openLightbox(this.src, this.alt)">
 
-Date of Birth:		Dec 20, 1917?
+Date of Birth:		Dec 20, 1917
 Date of Death:
-Place of Birth:
+Place of Birth:   London
 Place of Death:
 Residence:			London
 
-Place of Marriage:
+Place of Marriage:  London
 Date of Marriage:
 
 #b#Other Information#!b#
@@ -1277,9 +1273,7 @@ Place of Residence:	Cashel, Co. Galway
                   bioActive: "active",
                   bio: `Name:				#b##u#Paddy Connolly#!u##!b#
 Date of Birth:		Sep 21, 1942
-Date of Death:
 Place of Birth:		London
-Place of Death:
 Residence:			Florida, USA
 
 Place of Marriage:	New York, USA
@@ -1303,18 +1297,11 @@ Place of Residence:	Florida, USA
                     { label: "Patrick Sep 10, 1967-Oct 19, 2005 (Los Angeles)", bioActive: "inactive", bio: `Name:				#b##u#Patrick Connolly#!u##!b#
 Date of Birth:		Sep 10, 1967
 Date of Death:		Oct 19, 2005
-Place of Birth:
+Place of Birth:   New York
 Place of Death:		Los Angeles, USA
 Residence:			Los Angeles, USA
 
 #b#Other Information#!b#
-
-#b#Spouse:			#u##!u##!b#
-Date of Birth:
-Date of Death:
-Place of Birth:
-Place of Death:
-Place of Residence:
 
 #b#Other Information#!b#` },
                     {
@@ -1322,9 +1309,7 @@ Place of Residence:
                       bioActive: "inactive",
                       bio: `Name:				#b##u#Keith Connolly#!u##!b#
 Date of Birth:		Mar 21, 1973
-Date of Death:
-Place of Birth:
-Place of Death:
+Place of Birth:   New York
 Residence:			Long Island, NY, USA
 
 Place of Marriage:
@@ -1332,21 +1317,14 @@ Date of Marriage:
 
 #b#Other Information#!b#
 
-#b#Spouse:			#u##!u##!b#
-Date of Birth:
-Date of Death:
-Place of Birth:
-Place of Death:
-Place of Residence:
+#b#Spouse:			#u##!Ryanu##!b#
 
 #b#Other Information#!b#`,
                       children: [
                         { label: "Lacey", bioActive: "inactive", bio: `Name:				#b##u#Lacey Connolly#!u##!b#
 Date of Birth:
-Date of Death:
-Place of Birth:
-Place of Death:
-Residence:
+Place of Birth: New York
+Residence:      New York
 
 #b#Other Information#!b#` }
                       ]
@@ -1356,22 +1334,12 @@ Residence:
                       bioActive: "inactive",
                       bio: `Name:				#b##u#Courtney Connolly#!u##!b#
 Date of Birth:		Mar 21, 1977
-Date of Death:
-Place of Birth:
-Place of Death:
+Place of Birth:   New York
 Residence:			Los Angeles, USA
-
-Place of Marriage:
-Date of Marriage:
 
 #b#Other Information#!b#
 
 #b#Spouse:			#u#Jason#!u##!b#
-Date of Birth:
-Date of Death:
-Place of Birth:
-Place of Death:
-Place of Residence:	Los Angeles, USA
 
 #b#Other Information#!b#`,
                       children: [
@@ -1412,9 +1380,7 @@ Place of Residence:
                   bioActive: "active",
                   bio: `Name:				#b##u#Jimmy Connolly#!u##!b#
 Date of Birth:		Mar 21, 1946
-Date of Death:
 Place of Birth:		London
-Place of Death:
 Residence:			London
 
 Place of Marriage:	London
@@ -1423,11 +1389,7 @@ Date of Marriage:
 #b#Other Information#!b#
 Moved to Ireland with the family in 1959 and then moved back to London in Aug 1964 where he has lived since.
 
-email:		info@amyst.co.uk
-Mobile:		0044 771 190 7115
-
 #b#Spouse:			#u#Ann Mahony#!u##!b#
-Date of Birth:
 Date of Death:		Aug 15, 2007
 Place of Birth:		Listowel, Co. Kerry
 Place of Death:		London
@@ -1555,9 +1517,7 @@ Place of Residence:
                   bio: `Name:				#b##u#Sean Connolly#!u##!b#
 <img src="images/sean_connolly.jpg" alt="Sean Connolly" class="bio-thumbnail" onclick="openLightbox('images/sean_connolly.jpg','Sean Connolly')">
 Date of Birth:		May 11, 1955
-Date of Death:
 Place of Birth:		London
-Place of Death:
 Residence:			Oranmore, Co. Galway
 
 Date of Marriage:	Feb 16, 1979
@@ -1566,14 +1526,8 @@ Place of Marriage:	Galway
 #b#Other Information#!b#
 Moved to Ireland with the family in 1959. Lived in Cashel, Connemara until he was 18 and then moved to Galway
 
-email:		connolly.maree@gmail.com
-Mobile:		00353 87 2219183
-
 #b#Spouse:			#u#Mairead Hughes#!u##!b#
-Date of Birth:
-Date of Death:
 Place of Birth:		Claremorris, Co. Mayo
-Place of Death:
 Place of Residence:	Oranmore, Co. Galway
 
 #b#Other Information#!b#`,
@@ -1693,9 +1647,9 @@ Place of Residence:
                   bioActive: "active",
                   bio: `Name:				#b##u#Michael Connolly#!u##!b#
 Date of Birth:		Sep 20, 1959
-Date of Death:
+Date of Death:    N/A
 Place of Birth:		Cashel, Connemara
-Place of Death:
+Place of Death:   N/A
 Residence:			New Jersey, USA
 
 Place of Marriage:	New Jersey, USA
@@ -1704,17 +1658,17 @@ Date of Marriage:
 #b#Other Information#!b#
 Moved to the US in Feb 1988
 
-email:		michaelconnolly59@comcast.net
 Mobile:		001 201 317 2788
 
 #b#Spouse:			#u#Isabel#!u##!b#
 Date of Birth:
-Date of Death:
+Date of Death:    N/A
 Place of Birth:		Colombia
 Place of Death:
-Place of Residence:	New Jersey, USA
+Place of Residence:	Fort lauderdale, FL, USA
 
-#b#Other Information#!b#`
+#b#Other Information#!b#
+N/A`
                 },
                 {
                   label: "Anne Sep 11, 1961- (New York)",

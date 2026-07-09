@@ -666,8 +666,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const bio = li ? li.getAttribute("data-bio") : null;
     const bioActive = li ? li.getAttribute("data-bioactive") : null;
     closeDiv();
-    console.log (`bio: ${bio}`);
-    console.log (`bioActive: ${bioActive}`);
     if (bio && bioActive === "active") showBio(bio);    // only show bio if it exists and is active
   });
 
