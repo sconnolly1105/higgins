@@ -1282,15 +1282,7 @@ Date of Marriage:
 #b#Other Information#!b#
 Moved to Ireland with the family in 1959 and then moved to the US in Mar 1964. Lived for over 50 years in New York before moving to Florida in 2014 where he has become friends with his second cousin Carmel Higgins Frost who also lives in Florida. He is also friendly with her brother Joe Higgins who visits there regularly.
 
-email:		patrickconnolly569@hotmail.com
-Mobile:		001 914 329 2027
-
 #b#Spouse:			#u#Barbara#!u##!b#
-Date of Birth:
-Date of Death:
-Place of Birth:
-Place of Death:
-Place of Residence:	Florida, USA
 
 #b#Other Information#!b#`,
                   children: [
