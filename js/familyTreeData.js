@@ -1507,7 +1507,6 @@ Place of Residence:
                   label: "Sean May 11, 1955- (Oranmore) : married to Mairead Hughes",
                   bioActive: "active",
                   bio: `Name:				#b##u#Sean Connolly#!u##!b#
-<img src="images/sean_connolly.jpg" alt="Sean Connolly" class="bio-thumbnail" onclick="openLightbox('images/sean_connolly.jpg','Sean Connolly')">
 Date of Birth:		May 11, 1955
 Place of Birth:		London
 Residence:			Oranmore, Co. Galway
@@ -1526,68 +1525,50 @@ Place of Residence:	Oranmore, Co. Galway
                   children: [
                     {
                       label: "Eavan Aug 12, 1979- (Wicklow) : married to Andy Hayes",
-                      bioActive: "inactive",
+                      bioActive: "active",
                       bio: `Name:				#b##u#Eavan Connolly (Hayes)#!u##!b#
 Date of Birth:		Aug 12, 1979
-Date of Death:
-Place of Birth:
-Place of Death:
-Residence:			Wicklow
+Place of Birth:   Dublin
+Residence:			  Greystones, Co. Wicklow
 
-Place of Marriage:
-Date of Marriage:
+Place of Marriage:  
+Date of Marriage:   Jan 3, 2009
 
 #b#Other Information#!b#
 
 #b#Spouse:			#u#Andy Hayes#!u##!b#
-Date of Birth:
-Date of Death:
-Place of Birth:
-Place of Death:
-Place of Residence:	Wicklow
 
 #b#Other Information#!b#`,
                       children: [
                         { label: "Ruby Jul 17, 2014-", bioActive: "inactive", bio: `Name:				#b##u#Ruby Hayes#!u##!b#
 Date of Birth:		Jul 17, 2014
-Date of Death:
-Place of Birth:
-Place of Death:
-Residence:
+Place of Birth:   Dublin
+Residence:        Greystones
 
 #b#Other Information#!b#` }
                       ]
                     },
                     {
                       label: "Emmet Feb 14, 1981- (Dublin) : married to Paula Henihan",
-                      bioActive: "inactive",
+                      bioActive: "active",
                       bio: `Name:				#b##u#Emmet Connolly#!u##!b#
 Date of Birth:		Feb 14, 1981
-Date of Death:
-Place of Birth:
-Place of Death:
-Residence:			Dublin
+Place of Birth:   Dublin
+Residence:			  Galway
 
-Place of Marriage:
-Date of Marriage:
+Place of Marriage:  Galway
+Date of Marriage:   
 
 #b#Other Information#!b#
 
 #b#Spouse:			#u#Paula Henihan#!u##!b#
-Date of Birth:
-Date of Death:
-Place of Birth:
-Place of Death:
-Place of Residence:	Dublin
 
 #b#Other Information#!b#`,
                       children: [
-                        { label: "Finn Jan 31, 2014-", bioActive: "inactive", bio: `Name:				#b##u#Finn Connolly#!u##!b#
+                        { label: "Finn Jan 31, 2014-", bioActive: "active", bio: `Name:				#b##u#Finn Connolly#!u##!b#
 Date of Birth:		Jan 31, 2014
-Date of Death:
-Place of Birth:
-Place of Death:
-Residence:
+Place of Birth:   San Francisco
+Residence:        Galway
 
 #b#Other Information#!b#` }
                       ]
