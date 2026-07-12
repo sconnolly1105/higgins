@@ -280,6 +280,47 @@
       height: auto;
     }
 
+
+    /************************
+     * Start of Search CSS
+     ************************/
+    #search-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    #tree-search {
+      width: 220px;
+      padding: 3px 6px;
+      font-size: 1em;
+      border: 1px solid #999;
+      border-radius: 3px;
+    }
+    #search-results {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 20px;
+      z-index: 9996;
+      background: white;
+      border: 1px solid #999;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.25);
+      max-height: 300px;
+      max-width: 600px;
+      overflow-y: auto;
+    }
+    #search-results div {
+      padding: 5px 10px;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #search-results div:hover {
+      background: #e8f0fe;
+    }
+    /************************
+     * End of Search CSS
+     ************************/
   </style>
 </head>
 <body>
@@ -301,6 +342,17 @@
   <h2>Higgins Family Tree</h2>&nbsp;&nbsp;&nbsp;
   <span style="font-size:1.1em;">ℹ️</span>
   Click <a href="#" onclick="document.getElementById('info').style.display='block'; return false;">here</a> for further information 
+  <!------------------------
+    Start of Search HTML
+  ------------------------->
+  <span id="search-wrap">
+    &nbsp;&nbsp;&nbsp;🔍
+    <input type="text" id="tree-search" placeholder="Search for a person..." autocomplete="off">
+    <div id="search-results"></div>
+  </span>
+  <!------------------------
+    End of Search HTML
+  ------------------------->
   <br><br>
 
   <div id="data">
@@ -676,6 +728,81 @@ document.addEventListener("DOMContentLoaded", function () {
   $("#data").on("close_node.jstree", function (e, data) {
     closeDiv();
   });
+
+  /************************
+   * Start of Search JS
+   ************************/
+  // Searches all node labels for the query text (case-insensitive)
+  function searchTree(query) {
+    const tree = $("#data").jstree(true);
+    const matches = [];
+    const all = tree.get_json("#", { flat: true });
+    const q = query.toLowerCase();
+    all.forEach(function (n) {
+      if (n.text.toLowerCase().indexOf(q) !== -1) {
+        matches.push({ id: n.id, text: n.text });
+      }
+    });
+    return matches;
+  }
+
+  // Opens all ancestors of the chosen node, selects it, scrolls it into view.
+  // select_node fires activate_node, so the Bio popup appears automatically
+  // if bioActive === "active".
+  function goToNode(nodeId) {
+    const tree = $("#data").jstree(true);
+    tree._open_to(nodeId);
+    tree.deselect_all();
+    tree.select_node(nodeId);
+    document.getElementById("search-results").style.display = "none";
+    document.getElementById("tree-search").value = "";
+    const el = document.getElementById(nodeId);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  document.getElementById("tree-search").addEventListener("keyup", function (e) {
+    const resultsEl = document.getElementById("search-results");
+    const query = this.value.trim();
+
+    if (query.length < 2) {           // require at least 2 characters
+      resultsEl.style.display = "none";
+      return;
+    }
+
+    const matches = searchTree(query);
+
+    if (e.key === "Enter" && matches.length === 1) {
+      goToNode(matches[0].id);        // unique match — go straight there
+      return;
+    }
+
+    if (matches.length === 0) {
+      resultsEl.innerHTML = "<div style='cursor:default'>No matches found</div>";
+      resultsEl.style.display = "block";
+      return;
+    }
+
+    // Build the dropdown of matches (full node text so the user can
+    // distinguish between people with the same first name)
+    resultsEl.innerHTML = "";
+    matches.forEach(function (m) {
+      const div = document.createElement("div");
+      div.textContent = m.text.replace(/\s*\(Bio\)\s*$/, "");  // strip trailing (Bio) label
+      div.onclick = function () { goToNode(m.id); };
+      resultsEl.appendChild(div);
+    });
+    resultsEl.style.display = "block";
+  });
+
+  // Hide the dropdown when clicking elsewhere on the page
+  document.addEventListener("click", function (e) {
+    if (!document.getElementById("search-wrap").contains(e.target)) {
+      document.getElementById("search-results").style.display = "none";
+    }
+  });
+  /************************
+   * End of Search JS
+   ************************/
 
 });
   </script>
