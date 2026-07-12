@@ -749,7 +749,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Opens all ancestors of the chosen node, selects it, scrolls it into view.
   // select_node fires activate_node, so the Bio popup appears automatically
   // if bioActive === "active".
-  // Only show the bio if there is a bio and the bioActive is active, i.e. 'scaffolding' bios should not be shown
+  // Only show the bio if there is a bio and the bioActive is active, i.e. 'scaffolding' bios should not be shown.
   function goToNode(nodeId) {
     const tree = $("#data").jstree(true);
     tree._open_to(nodeId);
