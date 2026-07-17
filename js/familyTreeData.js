@@ -1540,12 +1540,26 @@ Date of Marriage:   Jan 3, 2009
 
 #b#Other Information#!b#`,
                       children: [
-                        { label: "Ruby Jul 17, 2014-", bioActive: "inactive", bio: `Name:				#b##u#Ruby Hayes#!u##!b#
+                        { label: "Ruby Jul 17, 2014-", bioActive: "active", bio: `Name:				#b##u#Ruby Hayes#!u##!b#
 Date of Birth:		Jul 17, 2014
 Place of Birth:   Dublin
 Residence:        Greystones
 
-#b#Other Information#!b#` }
+#b#Other Information#!b#` },
+{ label: "Cooper Oct 1, 2018-", bioActive: "active", bio: `Name:				#b##u#Cooper Hayes#!u##!b#
+  Date of Birth:		Oct 1, 2018
+  Place of Birth:   Dublin
+  Residence:        Greystones
+  
+  #b#Other Information#!b#
+  He is Isla's twin` },
+  { label: "Isla Oct 1, 2018-", bioActive: "active", bio: `Name:				#b##u#Isla Hayes#!u##!b#
+    Date of Birth:		Oct 1, 2018
+    Place of Birth:   Dublin
+    Residence:        Greystones
+    
+    #b#Other Information#!b#
+    She is Cooper's twin` }
                       ]
                     },
                     {
@@ -1570,7 +1584,14 @@ Date of Birth:		Jan 31, 2014
 Place of Birth:   San Francisco
 Residence:        Galway
 
-#b#Other Information#!b#` }
+#b#Other Information#!b#` },
+{ label: "Fia Aug 28, 2016-", bioActive: "active", bio: `Name:				#b##u#Fia Connolly#!u##!b#
+  Date of Birth:		Aug 28, 2014
+  Place of Birth:   Dublin
+  Residence:        Galway
+  
+  #b#Other Information#!b#` }
+  
                       ]
                     },
                     { label: "Denise Sep 29, 1983- (Maynooth) : married to Darrell Flinn", bioActive: "inactive", bio: `Name:				#b##u#Denise Connolly (Flinn)#!u##!b#
@@ -1592,7 +1613,23 @@ Place of Birth:
 Place of Death:
 Place of Residence:	Maynooth, Co. Kildare
 
+#b#Other Information#!b#`,
+children: [
+  { label: "Nyah Dec 3, 2017-", bioActive: "active", bio: `Name:				#b##u#Nyah Flinn#!u##!b#
+Date of Birth:		Dec 3, 2017
+Place of Birth:   Dublin
+Residence:        Maynooth, Co. Kildare
+
 #b#Other Information#!b#` },
+{ label: "Hugo Aug 11, 2021-", bioActive: "active", bio: `Name:				#b##u#Hugo Flinn#!u##!b#
+Date of Birth:		Dec 3, 2021
+Place of Birth:   Dublin
+Residence:        Maynooth, Co. Kildare
+
+#b#Other Information#!b#` }
+
+]
+},
                     { label: "Lisa May 29, 1990- (Naas, Co. Kildare)", bioActive: "inactive", bio: `Name:				#b##u#Lisa Connolly#!u##!b#
 Date of Birth:		May 29, 1990
 Date of Death:
