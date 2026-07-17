@@ -805,6 +805,32 @@ document.addEventListener("DOMContentLoaded", function () {
    * End of Search JS
    ************************/
 
+/************************
+ * Start of URL Search Parameter
+ ************************/
+// Allows linking directly to a person from another site, e.g.
+//   https://sconnolly1105.github.io/higgins/?search=Nan Aug 18
+// If exactly one node matches, jump straight to it.
+// If several match, put the term in the search box and show the choices.
+$("#data").one("ready.jstree", function () {
+  const params = new URLSearchParams(window.location.search);
+  const searchFor = params.get("search");
+  if (!searchFor) return;
+
+  const matches = searchTree(searchFor);
+  if (matches.length === 1) {
+    goToNode(matches[0].id);
+  } else if (matches.length > 1) {
+    const searchBox = document.getElementById("tree-search");
+    searchBox.value = searchFor;
+    searchBox.dispatchEvent(new KeyboardEvent("keyup", { key: "" }));
+    searchBox.focus();
+  }
+});
+/************************
+ * End of URL Search Parameter
+ ************************/
+
 });
   </script>
 </body>
