@@ -423,7 +423,7 @@ Born in England. No further information available.` }
         },
 
         {
-          label: "Coleman June 8, 1890- in Lettercallow (lived in Palmyra Avenue, Galway) : married Anna, Pat Folan's sister : second wife was from Craughwell, Co. Galway",
+          label: "Coleman June 8, 1890- in Lettercallow (lived in Palmyra Avenue, Galway)",
           bioActive: "active",
           bio: `Name:				#b##u#Coleman Higgins#!u##!b#
 Date of Birth:		June 8, 1890
@@ -771,7 +771,7 @@ Killed in motorcycle accident aged 20` }
         },
 
         {
-          label: "Patrick Mar 19 1895-Oct 20 1903 : died aged 8. The death registration says 'probably phthisis' (a type of tuberculosis)",
+          label: "Patrick Mar 19 1895-Oct 20 1903 : died aged 8.",
           bioActive: "active",
           bio: `Name:				#b##u#Patrick Higgins#!u##!b#
 Date of Birth:		Mar 19, 1895
