@@ -1250,7 +1250,7 @@ Pictured with her sister Mary Mulkerrins (she is on the left)
 Date of Birth:		Aug 18, 1920
 Date of Death:		Aug 15, 2004
 Place of Birth:		Lettermore
-Place of Death:
+Place of Death:   Carna Nursing Home, Connemara, Co. Galway.
 Residence:			Cashel, Co. Galway
 
 Date of Marriage:	Nov 22, 1941
@@ -1907,7 +1907,7 @@ Residence:
               ]
             },
             {
-              label: "Bridie Jun 14, 1924- (Carraroe) : married to Tommy McDonagh (killed in motorcycle accident in 1958)",
+              label: "Bridie Jun 14, 1924-Nov 28, 2018 (Carraroe) : married to Tommy McDonagh (killed in motorcycle accident in 1958)",
               bioActive: "inactive",
               bio: `Name:				#b##u#Bridie Folan (McDonagh)#!u##!b#
 Date of Birth:		Jun 14, 1924
