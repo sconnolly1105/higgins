@@ -1563,7 +1563,7 @@ Residence:        Greystones
                       ]
                     },
                     {
-                      label: "Emmet Feb 14, 1981- (Dublin) : married to Paula Henihan",
+                      label: "Emmet Feb 14, 1981- (Salthill) : married to Paula Henihan",
                       bioActive: "active",
                       bio: `Name:				#b##u#Emmet Connolly#!u##!b#
 Date of Birth:		Feb 14, 1981
